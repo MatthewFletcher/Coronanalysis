@@ -19,6 +19,8 @@ class Parser:
         with open(self.jsonfile, 'r') as f:
             self.data = json.load(f)
             for key in self.data.keys():
+                #TODO
+                pass
             
 
     def downloadData(self):
