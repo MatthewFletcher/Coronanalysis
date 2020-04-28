@@ -11,17 +11,13 @@ class Parser:
         self.filename = '../data/us-counties.csv'
         self.jsonfile = '../data/us-counties.json'
         self.data = {}
+
+        self.loadData()
         
-        #Get data from json file
-        self.loadData() 
     
     def loadData(self):
         with open(self.jsonfile, 'r') as f:
             self.data = json.load(f)
-            for key in self.data.keys():
-                #TODO
-                pass
-            
 
     def downloadData(self):
         r = requests.get(self.url)
@@ -51,7 +47,9 @@ class Parser:
         self.parsetojson()
 
     def plotCounty(self, fips):
-        countydata = [d for d in self.data[fips]['data']]
-        dates,cases, deaths = zip(*[(d['date'], d['cases'], d['deaths']) for d in countydata])
-        plt.plot(dates, cases)
+        countydata = self.data[fips]['data']
+        dates, cases, deaths = zip(*[(d['date'], d['cases'], d['deaths']) for d in countydata])
+        dates = [dt.datetime.strptime(date, '%Y-%m-%d') for date in dates]
+        plt.title(f"Cases in {self.data[fips]['county']} County, {self.data[fips]['state']}")
+        plt.scatter(dates, cases)
  
