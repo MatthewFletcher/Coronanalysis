@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from Parser import Parser
-p = Parser('../data/us-counties.csv')
+p = Parser()
 
-p.plotData('37037')
+p.plotCounty('37037')
 
 
