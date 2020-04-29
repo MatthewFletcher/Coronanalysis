@@ -12,6 +12,9 @@ from Parser import Parser
 p = Parser()
 
 #Plot by FIPS code
+#If you do not know your counties FIPS code,
+# look in data/fips.csv
+
 p.plotCounty('37037')
 
 #Default plotCounty plots deaths. 
